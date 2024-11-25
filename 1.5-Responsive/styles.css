@@ -1,0 +1,56 @@
+.header{
+    background-color: azure;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.hamb{
+    width: 40px;
+}
+
+
+.menu{
+    display: none;
+}
+
+main{
+
+    height: 120vh;
+    background-color: bisque;
+}
+
+.pic-cont image{
+    width: 100%;
+}
+
+
+
+@media (min-width:768px){
+    .menu{
+        display: flex;
+        list-style: none;
+        gap: 10px;
+    }
+
+    .hamb{
+        display: none;
+    }
+    
+    .pictures{
+        display: flex;
+    }
+}
+
+
+@media(width > 1000px){
+    .articles{
+        padding: 20px;
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+
+    }
+
+}
+}
