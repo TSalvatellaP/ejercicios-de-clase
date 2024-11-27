@@ -1,3 +1,12 @@
+/*
+1.- en movil se ve la hamburguesa y en tables no.
+2.- el menu grande se ve desde la table
+3.- los articulos se ven uno al lado del otro desde ordenador en adelante
+*/
+
+
+
+
 .header{
     background-color: azure;
     display: flex;
