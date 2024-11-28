@@ -1,0 +1,21 @@
+header{
+    background-color: aquamarine;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+footer{
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    z-index: 100;
+    position: sticky;
+    
+    
+}
