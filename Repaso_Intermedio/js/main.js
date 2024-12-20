@@ -1,3 +1,5 @@
+
+'use strict';
 /*Piedra papel, tijera
 1. Crear html y css> select, boton, resultado y titles
 2. Al arrancar la pagina> vamos a jugar
@@ -6,14 +8,17 @@
     = > 7 ----> papel
     si no ---. tijera
 4. Comparar movimientos de la jugadora y el ordenador.
-5. Traer las class al js
+5. Traer las class al js crear las variables
 */
 
 const select = document.querySelector('.js-selector');
 const btn = document.querySelector('.js-btn');
-const result = document.querySelector('.js-start');
+const play = document.querySelector('.js-play');
 const span_gamer = document.querySelector('.js-gamer1');
 const span_computer = document.querySelector('.js-computer');
+let pointGamer = 0;
+let pointComputer = 0;
+let countClick = 0;
 
 
 function getRandomNumber(max) {
@@ -21,43 +26,58 @@ function getRandomNumber(max) {
     
     }
 
-    //Resultado segun numero random generado max numero 10
+//Resultado segun numero random generado max numero 10
 function moveAleatory () {
-    const numRandom = getRandomNumber(10);
+    const numRandom = getRandomNumber(9);
+    let computerResult = '';
    //console.log(numRandom);
     if (numRandom <= 3) {
-       return "Piedra";
+        computerResult = "Piedra";
     }
     else if (numRandom >= 7) {
-       return "Papel";
+        computerResult = "Papel";
     } else {
-        return "Tijera";
+        computerResult = "Tijera";
     }
-
+    return computerResult;
 }
 
-//Generar una funcion que compare los resultados de gamer y computer. Creo unas constantes gamer y computer
+//Funcion para pintar la frase del resultado en el htmm
+function playresult (message){
+    play.innerHTML = message;
+}
 
+
+/*Generar una funcion que compare los resultados de gamer y computer. Creo unas constantes gamer y computer
+Condicionales del juego y contar los clicks para contar las partidas*/
 function compareResult(gamer, computer){
-    let pointGamer = 0;
-    let pointComputer = 0;
-  console.log (gamer,computer);
+    countClick++;
+     //console.log (gamer,computer);
     if (gamer === computer) {
-        result.innerHTML = 'Empate';
+        playresult ('EMPATE');
     }
-    else if ((gamer === "Piedra") && (computer === "Tijera") ||
-        (gamer === "Papel") && computer === "Piedra" ||
-        (gamer === "Tijera") &&computer === "Papel") {
-            result.innerHTML = 'Ganaste';
-            span_gamer.innerHTML = pointGamer++;
+    else if (
+        (gamer === "Piedra" && computer === "Tijera") ||
+        (gamer === "Papel" && computer === "Piedra") ||
+        (gamer === "Tijera" &&computer === "Papel") )
+        {
+            playresult ('HAS GANADO');
+            pointGamer++;
     } 
     else{
-    result.innerHTML = 'Perdiste';
-    span_computer.innerHTML = pointComputer++;
+        playresult ('HAS PERDIDO');
+        pointComputer++;
+   
     }
+    paintScore ();
    
 }
 
+//funcion para pintar la puntuacion en el html
+function paintScore (){
+    span_gamer.innerHTML = `${pointGamer}`;
+    span_computer.innerHTML = `${pointComputer}`;
+}
 
 
 //Las funciones a las que llamo cuando doy click
@@ -69,9 +89,7 @@ function handleClick(event) {
     compareResult(valueSelect, returnMoveAleatory);
    
         //console.log(returnMoveAleatory);
-    
-    
-    
+
 }
 
 btn.addEventListener('click', handleClick);
