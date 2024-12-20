@@ -11,36 +11,58 @@
 
 const select = document.querySelector('.js-selector');
 const btn = document.querySelector('.js-btn');
-const start = document.querySelector('.js-start');
-const gamer = document.querySelector('.js-gamer1');
-const computer = document.querySelector('.js-computer');
+const result = document.querySelector('.js-start');
+const h4_gamer = document.querySelector('.js-gamer1');
+const h4_computer = document.querySelector('.js-computer');
+
 
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
+    
     }
 
+    //Resultado segun numero random generado max numero 10
 function moveAleatory () {
-    const numRandom = getRandomNumber();
-    console.log(numRandom);
+    const numRandom = getRandomNumber(10);
+   //console.log(numRandom);
     if (numRandom <= 3) {
-        moveAleatory = stone;
+       return "Piedra";
     }
-    if (numRandom => 7) {
-        moveAleatory = paper;
+    else if (numRandom >= 7) {
+       return "Papel";
     } else {
-        moveAleatory = scissor;
+        return "Tijera";
     }
 
 }
 
+//Generar una funcion que compare los resultados de gamer y computer
+
+function compareResult(gamer, computer){
+  console.log (gamer,computer);
+    if (gamer === computer) {
+        result.innerHTML = 'Empate';
+    }
+    else if ((gamer === "Piedra") && (computer === "Tijera") ||
+        (gamer === "Papel") && computer === "Piedra" ||
+        (gamer === "Tijera") &&computer === "Papel") {
+            result.innerHTML = 'Ganaste';
+    } 
+    else{
+    result.innerHTML = 'Perdiste';
+    }
+   
+}
 
 
+//Las funciones a las que llamo cuando doy click
 function handleClick(event) {
     event.preventDefault();
     const valueSelect = select.value;
-    //console.log(valueSelect);
-    //optionGame(valueSelect);
-    //resultGame();
+    const returnMoveAleatory = moveAleatory ();
+    compareResult(valueSelect, returnMoveAleatory);
+        //console.log(returnMoveAleatory);
+    
     
 }
 
