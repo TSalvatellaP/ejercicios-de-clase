@@ -12,8 +12,8 @@
 const select = document.querySelector('.js-selector');
 const btn = document.querySelector('.js-btn');
 const result = document.querySelector('.js-start');
-const h4_gamer = document.querySelector('.js-gamer1');
-const h4_computer = document.querySelector('.js-computer');
+const span_gamer = document.querySelector('.js-gamer1');
+const span_computer = document.querySelector('.js-computer');
 
 
 function getRandomNumber(max) {
@@ -36,9 +36,11 @@ function moveAleatory () {
 
 }
 
-//Generar una funcion que compare los resultados de gamer y computer
+//Generar una funcion que compare los resultados de gamer y computer. Creo unas constantes gamer y computer
 
 function compareResult(gamer, computer){
+    let pointGamer = 0;
+    let pointComputer = 0;
   console.log (gamer,computer);
     if (gamer === computer) {
         result.innerHTML = 'Empate';
@@ -47,12 +49,15 @@ function compareResult(gamer, computer){
         (gamer === "Papel") && computer === "Piedra" ||
         (gamer === "Tijera") &&computer === "Papel") {
             result.innerHTML = 'Ganaste';
+            span_gamer.innerHTML = pointGamer++;
     } 
     else{
     result.innerHTML = 'Perdiste';
+    span_computer.innerHTML = pointComputer++;
     }
    
 }
+
 
 
 //Las funciones a las que llamo cuando doy click
@@ -60,8 +65,11 @@ function handleClick(event) {
     event.preventDefault();
     const valueSelect = select.value;
     const returnMoveAleatory = moveAleatory ();
+    //Vuelvo a decir cuales son las constantes gamer y computer ahora
     compareResult(valueSelect, returnMoveAleatory);
+   
         //console.log(returnMoveAleatory);
+    
     
     
 }
